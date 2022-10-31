@@ -1,5 +1,3 @@
-using OldSpice.Interfaces;
-
 namespace OldSpice.Repositories;
 
 public class IngredientsRepository : BaseRepository
