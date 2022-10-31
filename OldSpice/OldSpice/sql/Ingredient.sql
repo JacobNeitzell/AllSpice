@@ -14,6 +14,6 @@ CREATE TABLE
     ) default charset utf8 COMMENT '';
 
 SELECT ing.*, a.*
-FROM ingredient ing
+FROM ingredients ing
     JOIN accounts a ON a.id = ing.creatorId
 WHERE ing.id = 4;
