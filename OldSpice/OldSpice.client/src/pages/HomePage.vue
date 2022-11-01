@@ -2,7 +2,7 @@
   <section class="container">
     <div class="row">
       <div class="col-12">
-        <RecipeCard />
+        <RecipeCard :recipe="r" :key="r.id" />
 
       </div>
     </div>
@@ -12,6 +12,7 @@
 <script>
 import Pop from "../utils/Pop.js";
 import { recipesService } from "../services/RecipesService.js"
+import { onMounted } from "vue";
 export default {
   setup() {
     async function getAllRecipes() {
@@ -24,7 +25,7 @@ export default {
 
 
 
-
+    onMounted(() => { getAllRecipes(); });
 
     return {}
   }

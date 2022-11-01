@@ -1,6 +1,6 @@
 <template>
   <div class="RecipeCard">
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem;" v-if="recipe">
       <img class="card-img-top" :src="recipe?.img" :alt="recipe?.title" :title="recipe?.title + 'img'">
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
