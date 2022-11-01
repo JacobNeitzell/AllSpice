@@ -1,10 +1,12 @@
+using OldSpice.Interfaces;
+
 namespace OldSpice.Models;
 
-public class Favorite : Account
+public class Favorite : IRepoItem<int>
 {
-  public new int Id { get; set; }
+  public int Id { get; set; }
   public string AccountId { get; set; }
   public int RecipeId { get; set; }
-
-
+  public DateTime CreatedAt { get; set; }
+  public DateTime UpdatedAt { get; set; }
 }

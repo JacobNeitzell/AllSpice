@@ -3,9 +3,11 @@ namespace OldSpice.Services;
 public class AccountService
 {
   private readonly AccountsRepository _repo;
+  private readonly FavoritesRepository _fr;
 
-  public AccountService(AccountsRepository repo)
+  public AccountService(AccountsRepository repo, FavoritesRepository fr)
   {
+    _fr = fr;
     _repo = repo;
   }
 
@@ -31,4 +33,11 @@ public class AccountService
     original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
     return _repo.Edit(original);
   }
+
+  internal List<FavoriteRecipe> GetFavoritesByAccountId(string accountId)
+  {
+    return _fr.GetByAccoundId(accountId);
+  }
+
+
 }
