@@ -13,4 +13,16 @@ export const AppState = reactive({
   activeRecipe: null,
   activeRecipeId: null,
 
+  /** @type {import('./models/Ingredient.js').Ingredient[]} */
+  ingredients: [],
+
+  categories: [
+    { name: "specialtyCoffee", id: 1 },
+    { name: "asian", id: 2 },
+    { name: "mexican", id: 3 },
+    { name: "italian", id: 4 },
+    { name: "mexican", id: 5 },
+  ]
+
+
 })

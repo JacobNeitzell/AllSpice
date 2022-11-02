@@ -10,7 +10,9 @@ class RecipesService {
     AppState.recipes = res.data.map((r) => new Recipe(r));
   }
 
-
+  async setActiveRecipe(recipeData) {
+    AppState.activeRecipe = recipeData;
+  }
 
 
 

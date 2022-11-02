@@ -1,8 +1,8 @@
 <template>
   <section class="container">
-    <div class="row">
-      <div class="col-12">
-        <RecipeCard :recipe="r" :key="r.id" />
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-3 d-flex  theme-card theme-card-hover" v-for="r in recipes">
+        <RecipeCard :recipes="r" :key="r.id" />
 
       </div>
     </div>
@@ -13,6 +13,8 @@
 import Pop from "../utils/Pop.js";
 import { recipesService } from "../services/RecipesService.js"
 import { onMounted } from "vue";
+import { computed } from "@vue/reactivity";
+import { AppState } from "../AppState.js";
 export default {
   setup() {
     async function getAllRecipes() {
@@ -27,29 +29,20 @@ export default {
 
     onMounted(() => { getAllRecipes(); });
 
-    return {}
+    return {
+      recipes: computed(() => AppState.recipes)
+
+
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-
-  .home-card {
-    width: 50vw;
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
+.text-shadow {
+  color: rgb(121, 129, 34);
+  text-shadow: 1px 1px rgb(88, 27, 27), 0px 0px 5px rgb(105, 41, 115);
+  font-weight: bold;
+  letter-spacing: 0.08rem
 }
 </style>

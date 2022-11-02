@@ -12,15 +12,17 @@ export class Recipe {
     this.creatorId = data.creatorId;
     this.favoriteCount = data.favoriteCount;
     this.category = data.category;
-    this.favorited = getFavorite(data.id);
+    this.favorited = data.favorited
     this.favoriteId = data.favoriteId || null;
   }
 }
-function getFavorite(id) {
-  let fav = AppState.favorites.find((f) => f.recipeId == id);
-  if (fav) {
-    return true;
-  }
-  return false;
-}
+
+
+// function getFavorite(id) {
+//   let fav = AppState.favorites.find((f) => f.recipeId == id);
+//   if (fav) {
+//     return true;
+//   }
+//   return false;
+// }
 
