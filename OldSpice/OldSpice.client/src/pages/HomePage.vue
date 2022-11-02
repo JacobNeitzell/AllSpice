@@ -1,8 +1,9 @@
 <template>
   <section class="container">
     <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-3 d-flex  theme-card theme-card-hover" v-for="r in recipes">
-        <RecipeCard :recipes="r" :key="r.id" />
+      <div class="col-md-6 col-lg-3 d-flex  theme-card theme-card-hover" v-for="r in recipe">
+        <RecipeModal :recipe="activeRecipe" />
+        <RecipeCard :recipe="r" :key="r.id" />
 
       </div>
     </div>
@@ -30,11 +31,13 @@ export default {
     onMounted(() => { getAllRecipes(); });
 
     return {
-      recipes: computed(() => AppState.recipes)
+      recipe: computed(() => AppState.recipes),
+      activeRecipe: computed(() => AppState.activeRecipe),
+      favrecipe: computed(() => AppState.favoriteRecipes),
+      ingredients: computed(() => AppState.ingredients),
+    };
+  },
 
-
-    }
-  }
 }
 </script>
 

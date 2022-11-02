@@ -1,18 +1,21 @@
 <template>
   <div class="RecipeCard">
-    <div class="card elevation-4" style="width: 18rem;" v-if="recipes">
-      <img class="card-img-top forcedImg" :src="recipes.img" :alt="recipes.title" :title="recipes.title + 'img'">
+    <div class="card elevation-4" style="width: 18rem;" v-if="recipe">
+      <img class="card-img-top forcedImg" :src="recipe.img" :alt="recipe.title" :title="recipe.title + 'img'">
       <div>
         <i class="mdi mdi-heart selectable"></i>
       </div>
-      <div class="card-body">
-        <span class="cardText p-2 rounded no-select selectable" :title="'Show More Info'" @click="setActiveRecipe()"
-          data-bs-target="#RecipeModal" data-bs-toggle="modal">
-          <h5 class="card-title text-shadow">{{ recipes.title }}</h5>
-          <p class="card-text text-shadow2">{{ recipes.category }}
-          </p>
-        </span>
-      </div>
+      <!-- NOTE - MODAL HERE -->
+      <region>
+        <div class="card-body">
+          <span class="cardText p-2 rounded no-select selectable" :title="'Show More Info'" @click="setActiveRecipe()"
+            data-bs-target="#RecipeModal" data-bs-toggle="modal">
+            <h5 class="card-title text-shadow">{{ recipe.title }}</h5>
+            <p class="card-text text-shadow2">{{ recipe.category }}
+            </p>
+          </span>
+        </div>
+      </region>
     </div>
   </div>
 
@@ -20,17 +23,22 @@
 
 
 <script>
+import { computed } from "@vue/reactivity";
+import { AppState } from "../AppState.js";
 import { Recipe } from "../models/Recipe.js";
 import { recipesService } from "../services/RecipesService.js";
 
 export default {
   props: {
-    recipes: { type: Recipe, required: true },
+    recipe: { type: Recipe, required: true },
   },
-  setup() {
+  setup(props) {
     return {
+      creator: computed(() => AppState.account.id == props.recipe.creator.id),
+      // favorited: computed(() => AppState.favorites.find((f) => f.id == props.recipe.id)),
+
       setActiveRecipe() {
-        recipesService.setActiveRecipe(props.recipes);
+        recipesService.setActiveRecipe(props.recipe);
       },
 
 
